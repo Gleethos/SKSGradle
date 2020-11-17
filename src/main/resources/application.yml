@@ -1,0 +1,17 @@
+
+### ????????
+spring:
+  profiles:
+    active: dev
+  ### ??????????
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:C:\\Users\\Daglemino\\Documents\\db\\springboot.db
+    username:
+    password:
+  ### sqlite??????????
+  jpa:
+    database-platform: org.sks.project.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
