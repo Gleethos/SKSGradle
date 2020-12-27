@@ -1,5 +1,7 @@
 package org.sks.project
 
+import neureka.Tsr
+
 //import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification;
@@ -23,6 +25,15 @@ class Basic_REST_Project_Tests extends Specification
             print("Hello test suite!")
         expect : 'Spock will make sure that true is true!'
             true
+    }
+
+    def 'My tsr test'() {
+
+
+        expect :
+            Tsr t = new Tsr<>()
+            print(t)
+
     }
 
 }
