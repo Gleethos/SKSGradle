@@ -1,10 +1,25 @@
 
 server:
-  port: 0
+  port: 7500
 
 spring:
   application:
     name: blogservice
+  ### ??????????
+  profiles:
+    active: dev
+  ### ??????????
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:C:\\Users\\Daglemino\\Documents\\db\\springboot.db
+    username:
+    password:
+  ### sqlite??????????
+  jpa:
+    database-platform: at.technikumwien.blog.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
 eureka:
   client:
