@@ -15,11 +15,21 @@ ribbon:
   MaxAutoRetries: 1
   MaxAutoRetriesNextServer: 1
   retryableStatusCodes: 404, 500
+  ReadTimeout: 60000
 
 zuul:
   prefix: /api
   routes:
-    blogpostservice: /blog/**
+    blogservice: /blog/**
     bonusservice: /bonus/**
     statisticsservice: /stats/**
   retryable: true
+  ignored-services: "*"
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 16000
