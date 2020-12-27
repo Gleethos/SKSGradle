@@ -20,6 +20,14 @@ public class Landmark {
         this.type = type;
     }
 
+    public Landmark( String title, double longitude, double latitude, Type type ) {
+        this.title = title;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.type = type;
+    }
+
+
     @Id
     @GeneratedValue
     private Long id;
@@ -34,6 +42,7 @@ public class Landmark {
     private double latitude;
 
     @Enumerated(EnumType.STRING)
+    @Column(name="ltype")
     private Type type;
 
 }

@@ -1,5 +1,6 @@
 package at.technikumwien.blog.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,9 +17,16 @@ public class Author {
     public Author( Long id, String forename, String surname, String email ) {
         this.id = id;
         this.forename = forename;
-        this. surname = surname;
+        this.surname = surname;
         this.email = email;
     }
+
+    public Author( String forename, String surname, String email ) {
+        this.forename = forename;
+        this.surname = surname;
+        this.email = email;
+    }
+
 
     @Id
     @GeneratedValue
@@ -34,6 +42,7 @@ public class Author {
     private String email;
 
     @OneToMany(mappedBy = "author")
+    @JsonIgnore
     private List<BlogPost> posts;
 
 }

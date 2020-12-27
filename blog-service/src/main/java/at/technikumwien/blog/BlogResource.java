@@ -16,10 +16,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/resources/blog")
 @Log
-public class BlogResource {
+public class BlogResource
+{
     @Autowired
     private BlogPostRepository blogRepository;
-    private int counter;
+    @Autowired
+    private AuthorRepository authorRepository;
+    @Autowired
+    private LandmarkRepository landmarkRepository;
 
     @GetMapping
     public String hello() {
@@ -45,9 +49,10 @@ public class BlogResource {
         realPost.setTitle( post.getTitle() );
         realPost.setContent( post.getContent() );
         realPost.setDescription( post.getDescription() );
-        realPost.setAuthor( null );
-        realPost.setLandmark( null );
-
+        
+        // TODO: check if author even exist! (For now just try....)
+        realPost.setAuthor( authorRepository.findById( post.getAuthorId() ) );
+        realPost.setLandmark( landmarkRepository.findById(post.getLandmarkId() ) );
 
         realPost.setId(null); // So that existing posts do not get overridden
 
