@@ -2,12 +2,17 @@ package at.technikumwien.blog;
 
 import at.technikumwien.blog.dtos.BlogPostDTO;
 import at.technikumwien.blog.entities.BlogPost;
+import at.technikumwien.blog.messaging.AccessEvent;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.transaction.interceptor.TransactionInterceptor;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -24,6 +29,9 @@ public class BlogResource
     private AuthorRepository authorRepository;
     @Autowired
     private LandmarkRepository landmarkRepository;
+
+    @Autowired
+    private Source source;
 
     @GetMapping
     public String hello() {
@@ -52,11 +60,27 @@ public class BlogResource
         
         // TODO: check if author even exist! (For now just try....)
         realPost.setAuthor( authorRepository.findById( post.getAuthorId() ) );
-        realPost.setLandmark( landmarkRepository.findById(post.getLandmarkId() ) );
+        realPost.setLandmark( landmarkRepository.findById( post.getLandmarkId() ) );
 
         realPost.setId(null); // So that existing posts do not get overridden
 
         realPost = blogRepository.save(realPost);
+
+        var accessEvent = new AccessEvent(
+                realPost.getAuthor().getId(),
+                realPost.getLandmark().getId()
+        );
+        try {
+            Message<AccessEvent> message = MessageBuilder
+                    .withPayload(accessEvent)
+                    .build();
+
+            source.output().send(message);
+        } catch( Exception e ) {
+            log.severe( "Could not notify other service about read access." );
+            TransactionInterceptor.currentTransactionStatus().setRollbackOnly();
+        }
+
 
         URI location = WebMvcLinkBuilder.linkTo(
                 WebMvcLinkBuilder.methodOn(getClass()).retrieve(realPost.getId())

@@ -2,12 +2,14 @@ package at.technikumwien.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Source;
 
 @SpringBootApplication
-public class BlogApplication {
-
+@EnableBinding( Source.class )
+public class BlogApplication
+{
     public static void main(String[] args) {
         SpringApplication.run(BlogApplication.class, args);
     }
-
 }

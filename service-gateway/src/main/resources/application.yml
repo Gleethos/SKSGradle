@@ -22,7 +22,7 @@ zuul:
   routes:
     blogservice: /blog/**
     bonusservice: /bonus/**
-    statisticsservice: /stats/**
+    statservice: /stat/**
   retryable: true
   ignored-services: "*"
 
@@ -32,4 +32,4 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 16000
+            timeoutInMilliseconds: 444000

@@ -14,7 +14,17 @@ spring:
     url: jdbc:sqlite:C:\\Users\\Daglemino\\Documents\\db\\bonus.db
     username:
     password:
-
+  ### Kafka configuration :
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: travelportal.readers
+          content-type: application/json
+          group: travelportal.readers.bonusgroup
+      kafka:
+        binder:
+          brokers: localhost:9092
 
   ### sqlite??????????
   jpa:

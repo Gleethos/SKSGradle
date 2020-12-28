@@ -30,7 +30,9 @@ dependencies {
                     'org.xerial:sqlite-jdbc:3.8.11.2'
 
 
-    implementation 'org.apache.kafka:kafka-streams'
+    implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
+
+    implementation 'org.apache.kafka:kafka-streams' // This might be obsolete!
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
