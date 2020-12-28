@@ -1,10 +1,10 @@
-package at.technikumwien.blog;
+package at.technikumwien.stat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BlogApplicationTests
+class StatApplicationTests
 {
 
     @Test

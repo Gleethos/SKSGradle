@@ -4,20 +4,20 @@ server:
 
 spring:
   application:
-    name: blogservice
+    name: statservice
   ### ??????????
   profiles:
     active: dev
   ### ??????????
   datasource:
     driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:C:\\Users\\Daglemino\\Documents\\db\\springboot.db
+    url: jdbc:sqlite:C:\\Users\\Daglemino\\Documents\\db\\stat.db
     username:
     password:
 
   ### sqlite??????????
   jpa:
-    database-platform: at.technikumwien.blog.dialect.SQLiteDialect
+    database-platform: at.technikumwien.stat.dialect.SQLiteDialect
     hibernate:
       ddl-auto: update
     show-sql: true

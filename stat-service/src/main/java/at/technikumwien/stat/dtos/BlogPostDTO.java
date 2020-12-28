@@ -1,4 +1,4 @@
-package at.technikumwien.blog.dtos;
+package at.technikumwien.stat.dtos;
 
 
 import lombok.Data;

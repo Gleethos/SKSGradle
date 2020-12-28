@@ -1,4 +1,4 @@
-package at.technikumwien.blog.dialect;
+package at.technikumwien.stat.dialect;
 
 
 import org.hibernate.dialect.Dialect;
