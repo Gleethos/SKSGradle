@@ -1,0 +1,65 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'at.technikum-wien'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('springCloudVersion', "Hoxton.SR9")
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter',
+                    'org.springframework.boot:spring-boot-starter-web',
+                    'org.springframework.hateoas:spring-hateoas',
+                    'org.springframework.boot:spring-boot-starter-data-jpa',
+                    'org.xerial:sqlite-jdbc:3.8.11.2'
+
+
+    implementation 'org.apache.kafka:kafka-streams'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    //testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Test suite : Groovy, Spock (+ sl4j, + Spock-Reports)
+    testCompile group: 'org.codehaus.groovy', name: 'groovy', version: '3.0.5'
+    testCompile group: 'org.spockframework', name: 'spock-core', version: '2.0-M2-groovy-3.0'
+    testCompile group: 'org.spockframework', name: 'spock-bom', version: '2.0-M2-groovy-3.0'
+    testCompile 'com.athaydes:spock-reports:2.0-RC2', { transitive = false }
+    //testImplementation 'org.slf4j:slf4j-api:1.7.30' // LOGGING
+    //testRuntimeClasspath 'org.slf4j:slf4j-simple:1.7.30'
+    testRuntime "net.bytebuddy:byte-buddy:1.9.3" // allows mocking of classes (in addition to interfaces)
+    testRuntime "org.objenesis:objenesis:2.6"    // allows mocking of classes without default constructor (together with CGLIB)
+
+
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

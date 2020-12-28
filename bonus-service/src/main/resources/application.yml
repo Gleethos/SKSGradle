@@ -4,20 +4,21 @@ server:
 
 spring:
   application:
-    name: blogservice
+    name: bonusservice
   ### ??????????
   profiles:
     active: dev
   ### ??????????
   datasource:
     driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:C:\\Users\\Daglemino\\Documents\\db\\blog.db
+    url: jdbc:sqlite:C:\\Users\\Daglemino\\Documents\\db\\bonus.db
     username:
     password:
 
+
   ### sqlite??????????
   jpa:
-    database-platform: at.technikumwien.blog.dialect.SQLiteDialect
+    database-platform: at.technikumwien.bonus.dialect.SQLiteDialect
     hibernate:
       ddl-auto: update
     show-sql: true
