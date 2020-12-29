@@ -12,8 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Table(name = "t_authors")
-public class Author {
-
+public class Author
+{
     public Author( Long id, String forename, String surname, String email ) {
         this.id = id;
         this.forename = forename;

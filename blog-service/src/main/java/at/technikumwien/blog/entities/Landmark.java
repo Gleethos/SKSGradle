@@ -10,8 +10,8 @@ import javax.persistence.*;
 //@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "t_landmarks")
-public class Landmark {
-
+public class Landmark
+{
     public Landmark( Long id, String title, double longitude, double latitude, Type type ) {
         this.id = id;
         this.title = title;

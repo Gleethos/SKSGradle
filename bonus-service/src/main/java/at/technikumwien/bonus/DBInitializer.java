@@ -23,7 +23,10 @@ public class DBInitializer
             authorRewardRepository.saveAll(List.of(
                 new AuthorReward(1L,"AHJH67VHB78",0),
                 new AuthorReward(2L,"7868GBHV878",0),
-                new AuthorReward(3L,"8767687VHZ",0)
+                new AuthorReward(3L,"8767687VHZ",0),
+                new AuthorReward(4L,"HVHCVHJBKB",0),
+                new AuthorReward(5L,"GCVJHBKJB",0),
+                new AuthorReward(6L,"JHVGCHKBK",0)
             ));
         }
         else log.info("Existing author rewards found!");

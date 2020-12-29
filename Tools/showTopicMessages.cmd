@@ -8,7 +8,7 @@ call ..\setEnvironment.cmd
 
 call bin\windows\kafka-console-consumer.bat ^
 	--bootstrap-server localhost:%PORT_KAFKA% ^
-	--topic newsletter.readers ^
+	--topic travelportal.readers ^
 	--from-beginning
 
 popd

@@ -48,6 +48,7 @@ public class BlogResource
         return blogRepository.findAll();
     }
 
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create( @RequestBody BlogPostDTO post )
     {
@@ -66,9 +67,26 @@ public class BlogResource
 
         realPost = blogRepository.save(realPost);
 
+        URI location = WebMvcLinkBuilder.linkTo(
+                WebMvcLinkBuilder.methodOn(getClass()).retrieve(realPost.getId())
+            ).toUri();
+
+        return ResponseEntity.created(location).build();
+    }
+
+
+    @GetMapping("/{id}")
+    public BlogPost retrieve(@PathVariable long id) {
+        log.info("retrieve() >> id=" + id);
+
+        BlogPost post = blogRepository.findById(id)
+                .orElseThrow(
+                        () -> new EmptyResultDataAccessException("can't find news with id " + id, 1)
+                );
+
         var accessEvent = new AccessEvent(
-                realPost.getAuthor().getId(),
-                realPost.getLandmark().getId()
+                post.getAuthor().getId(),
+                post.getLandmark().getId()
         );
         try {
             Message<AccessEvent> message = MessageBuilder
@@ -80,26 +98,7 @@ public class BlogResource
             log.severe( "Could not notify other service about read access." );
             TransactionInterceptor.currentTransactionStatus().setRollbackOnly();
         }
-
-
-        URI location = WebMvcLinkBuilder.linkTo(
-                WebMvcLinkBuilder.methodOn(getClass()).retrieve(realPost.getId())
-            ).toUri();
-
-        return ResponseEntity.created(location).build();
-    }
-
-
-    @GetMapping("/{id}")
-    public /* ResponseEntity<News> */ BlogPost retrieve(@PathVariable long id) {
-        log.info("retrieve() >> id=" + id);
-
-//        return newsRepository.findById(id)
-//            .map(news -> ResponseEntity.ok(news))
-//            .orElse(ResponseEntity.notFound().build());
-
-        return blogRepository.findById(id)
-                .orElseThrow(() -> new EmptyResultDataAccessException("can't find news with id " + id, 1));
+        return post;
     }
 
     // TODO add more methods here ;-)
