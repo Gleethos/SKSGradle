@@ -1,7 +1,9 @@
 package at.technikumwien.blog;
 
 import at.technikumwien.blog.dtos.BlogPostDTO;
+import at.technikumwien.blog.entities.Author;
 import at.technikumwien.blog.entities.BlogPost;
+import at.technikumwien.blog.entities.Landmark;
 import at.technikumwien.blog.messaging.AccessEvent;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,7 @@ public class BlogResource
 
 
     @GetMapping( "all" )
+    @CrossOrigin("*")
     public List<BlogPost> retrieveAll() {
         log.info("fetching all...");
 
@@ -50,6 +53,7 @@ public class BlogResource
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin("*")
     public ResponseEntity<?> create( @RequestBody BlogPostDTO post )
     {
         log.info( "create() >> post=" + post );
@@ -76,6 +80,7 @@ public class BlogResource
 
 
     @GetMapping("/{id}")
+    @CrossOrigin("*")
     public BlogPost retrieve(@PathVariable long id) {
         log.info("retrieve() >> id=" + id);
 
@@ -101,5 +106,16 @@ public class BlogResource
         return post;
     }
 
+    @GetMapping("authors")
+    @CrossOrigin("*")
+    public List<Author> getAllAuthors(){
+        return authorRepository.findAll();
+    }
+
+    @GetMapping("landmarks")
+    @CrossOrigin("*")
+    public List<Landmark> getAllLandmarks(){
+        return landmarkRepository.findAll();
+    }
     // TODO add more methods here ;-)
 }
