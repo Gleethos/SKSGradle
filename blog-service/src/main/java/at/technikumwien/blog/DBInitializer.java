@@ -53,6 +53,26 @@ public class DBInitializer
                             "Es war einmal vor einer langen Zeit da wurden Kartoffeln erfunden....",
                             authorRepository.findById(6),
                             landmarkRepository.findById(11)
+                    ),new BlogPost(
+                            "Die Kirsche der Zukunft!",
+                            "Coole Kartoffeln die die Welt verändern.",
+                            "Es war einmal vor einer langen Zeit da wurden Kartoffeln erfunden....",
+                            authorRepository.findById(6),
+                            landmarkRepository.findById(11)
+                    ),
+                    new BlogPost(
+                            "Die Banane der Zukunft!",
+                            "Coole Kartoffeln die die Welt verändern.",
+                            "Es war einmal vor einer langen Zeit da wurden Kartoffeln erfunden....",
+                            authorRepository.findById(6),
+                            landmarkRepository.findById(11)
+                    ),
+                    new BlogPost(
+                            "Der Apfel der Zukunft!",
+                            "Coole Kartoffeln die die Welt verändern.",
+                            "Es war einmal vor einer langen Zeit da wurden Kartoffeln erfunden....",
+                            authorRepository.findById(6),
+                            landmarkRepository.findById(11)
                     )
             ));
         }
