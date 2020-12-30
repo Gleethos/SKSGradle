@@ -21,8 +21,8 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/resources/blog")
 @Log
+//@CrossOrigin("*")
 public class BlogResource
 {
     @Autowired
@@ -43,8 +43,7 @@ public class BlogResource
     }
 
 
-    @GetMapping( "all" )
-    @CrossOrigin("*")
+    @GetMapping( "posts" )
     public List<BlogPost> retrieveAll() {
         log.info("fetching all...");
 
@@ -52,8 +51,7 @@ public class BlogResource
     }
 
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @CrossOrigin("*")
+    @PostMapping(path = "post/create",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create( @RequestBody BlogPostDTO post )
     {
         log.info( "create() >> post=" + post );
@@ -79,8 +77,7 @@ public class BlogResource
     }
 
 
-    @GetMapping("/{id}")
-    @CrossOrigin("*")
+    @GetMapping("post/{id}")
     public BlogPost retrieve(@PathVariable long id) {
         log.info("retrieve() >> id=" + id);
 
@@ -107,13 +104,11 @@ public class BlogResource
     }
 
     @GetMapping("authors")
-    @CrossOrigin("*")
     public List<Author> getAllAuthors(){
         return authorRepository.findAll();
     }
 
     @GetMapping("landmarks")
-    @CrossOrigin("*")
     public List<Landmark> getAllLandmarks(){
         return landmarkRepository.findAll();
     }

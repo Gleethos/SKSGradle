@@ -1,19 +1,11 @@
-
 server:
   port: 0
 
 spring:
   application:
     name: blogservice
-  ### ??????????
   profiles:
     active: dev
-  ### ??????????
-  datasource:
-    driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:C:\\Users\\Daglemino\\Documents\\db\\blog.db
-    username:
-    password:
   ### Kafka configurations:
   cloud:
     stream:
@@ -25,7 +17,12 @@ spring:
         binder:
           brokers: localhost:9092
 
-  ### sqlite??????????
+  ### JPA - Sqlite
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:C:\\Users\\Oliver\\Documents\\db\\blog.db
+    username:
+    password:
   jpa:
     database-platform: at.technikumwien.blog.dialect.SQLiteDialect
     hibernate:
