@@ -5,15 +5,8 @@ server:
 spring:
   application:
     name: statservice
-  ### ??????????
   profiles:
     active: dev
-  ### ??????????
-  datasource:
-    driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:C:\\Users\\Daglemino\\Documents\\db\\stat.db
-    username:
-    password:
   ### Kafka configuration :
   cloud:
     stream:
@@ -25,7 +18,13 @@ spring:
       kafka:
         binder:
           brokers: localhost:9092
-  ### sqlite??????????
+
+  ### JPA - Sqlite
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:C:\\Users\\Oliver\\Documents\\db\\stat.db
+    username:
+    password:
   jpa:
     database-platform: at.technikumwien.stat.dialect.SQLiteDialect
     hibernate:
