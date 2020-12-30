@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { BlogpostDetailComponent } from './components/blogpost-detail/blogpost-detail.component';
 import { BlogpostCreateComponent } from './components/blogpost-create/blogpost-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogpostListComponent,
     BlogpostDetailComponent,
-    BlogpostCreateComponent
+    BlogpostCreateComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

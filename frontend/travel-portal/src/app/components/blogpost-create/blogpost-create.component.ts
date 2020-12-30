@@ -25,14 +25,21 @@ export class BlogpostCreateComponent implements OnInit {
       title: ['', [Validators.required]],
       description: [''],
       content: [''],
-      authorId: [-1],
-      landmarkId: [-1]
+      authorId: [-1, [Validators.min(0)]],
+      landmarkId: [-1, [Validators.min(0)]]
     });
   }
 
 
   submit(){
+    if(!this.blogPostForm.valid){
+      alert("Form not properly filled!");
+      return;
+    }
+
     this.repo.create(this.blogPostForm.value);
+    this.blogPostForm.reset();
+
     }
 
 }
