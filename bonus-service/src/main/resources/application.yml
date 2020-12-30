@@ -5,15 +5,8 @@ server:
 spring:
   application:
     name: bonusservice
-  ### ??????????
   profiles:
     active: dev
-  ### ??????????
-  datasource:
-    driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:C:\\Users\\Daglemino\\Documents\\db\\bonus.db
-    username:
-    password:
   ### Kafka configuration :
   cloud:
     stream:
@@ -26,7 +19,12 @@ spring:
         binder:
           brokers: localhost:9092
 
-  ### sqlite??????????
+  ### JPA - Sqlite
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:C:\\Users\\Oliver\\Documents\\db\\bonus.db
+    username:
+    password:
   jpa:
     database-platform: at.technikumwien.bonus.dialect.SQLiteDialect
     hibernate:

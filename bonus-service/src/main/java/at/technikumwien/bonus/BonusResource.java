@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/resources/bonus")
 @Log
 public class BonusResource
 {
@@ -21,14 +20,14 @@ public class BonusResource
         return authorRewardRepository.findAll();
     }
 
-    @PostMapping
+    /*@PostMapping
     public void save() {
         AuthorReward authorReward = new AuthorReward(
                 2L, "A666Z", 4
         );
         authorRewardRepository.save( authorReward );
 
-    }
+    }*/
 
     // TODO add more methods here ;-)
 }

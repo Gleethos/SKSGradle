@@ -16,7 +16,7 @@ public class PaymentSchedule
     @Autowired
     AuthorRewardRepository authorRewardRepository;
 
-    @Scheduled( fixedRate = 1000 * 60 ) // 5 * 60 * 1000 )
+    @Scheduled(fixedRate = 1000 * 60)// cron = "0, 0, 0, 1, *, *", zone = "Europe/Vienna")//fixedRate = 1000 * 60 )
     public void monthlyPayout()
     {
         List<AuthorReward> all = authorRewardRepository.findAll();
