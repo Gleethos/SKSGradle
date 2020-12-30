@@ -12,7 +12,7 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 
 ribbon:
-  MaxAutoRetries: 1
+  MaxAutoRetries: 2
   MaxAutoRetriesNextServer: 1
   retryableStatusCodes: 404, 500
   ReadTimeout: 60000
